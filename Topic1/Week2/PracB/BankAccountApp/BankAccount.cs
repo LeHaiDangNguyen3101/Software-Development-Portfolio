@@ -31,6 +31,16 @@ public class BankAccount
         Balance += amount;
     }
 
+    public void Deposit(int amount)
+    {
+        Deposit((decimal)amount);
+    }
+
+    public void Deposit(double amount)
+    {
+        Deposit((decimal)amount);
+    }
+
     public void Withdraw(decimal amount)
     {
         if (amount <= 0)

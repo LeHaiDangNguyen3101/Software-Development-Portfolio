@@ -42,3 +42,17 @@ catch (InvalidOperationException ex)
 {
     Console.WriteLine(ex.Message);
 }
+
+Console.WriteLine();
+Console.WriteLine("--Deposit Overloading Example--");
+
+BankAccount testAccount = new BankAccount("Test Account", 100m);
+
+testAccount.Deposit(50m);
+Console.WriteLine($"After decimal deposit: ${testAccount.Balance:F2}");
+
+testAccount.Deposit(25);
+Console.WriteLine($"After int deposit: ${testAccount.Balance:F2}");
+
+testAccount.Deposit(12.5);
+Console.WriteLine($"After double deposit: ${testAccount.Balance:F2}");
