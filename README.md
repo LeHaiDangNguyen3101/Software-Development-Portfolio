@@ -58,11 +58,33 @@ Prac A includes:
 - Testing valid and invalid code paths.
 - Achieving 100% line coverage for the `Payroll` class.
 
+#### Prac B
+
+Prac B includes:
+
+- Creating a `BankAccount` class using auto-properties, a constructor, and methods.
+- Applying encapsulation and access modifiers to protect account data.
+- Implementing `Deposit()` and `Withdraw()` methods with validation.
+- Using exceptions to handle invalid deposits and insufficient balances.
+- Using method overloading with `decimal`, `int`, and `double` deposit amounts.
+- Using casting and type conversion between numeric types.
+- Creating an xUnit test project for the `BankAccount` class.
+- Testing successful operations and exception paths.
+- Achieving 100% line coverage for the `BankAccount` class.
+
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.
 
 The following commands can be run from the root directory of this repository.
+
+### Week 1 - Prac A
+
+To run the Week 1 Payroll Calculator:
+
+```powershell
+dotnet run --project Topic1/Week1/PracA/PayrollCalculator
+```
 
 ### Week 1 - Prac B
 
@@ -92,6 +114,20 @@ To run the Payroll unit tests:
 dotnet test Topic1/Week2/PracA/PayrollCalculator.Tests
 ```
 
+### Week 2 - Prac B
+
+To run the BankAccount application:
+
+```powershell
+dotnet run --project Topic1/Week2/PracB/BankAccountApp
+```
+
+To run the BankAccount unit tests:
+
+```powershell
+dotnet test Topic1/Week2/PracB/BankAccountApp.Tests
+```
+
 ## Weekly Reflection Notes
 
 Each topic contains a `Notes.md` file describing:
@@ -107,14 +143,32 @@ Each topic contains a `Notes.md` file describing:
 
 #### Week 1
 
-During Week 1, I developed my understanding of the basic C# development workflow. I learned how to create and run .NET projects, work with static typing, create classes and methods, use collections namely `List` and `Dictionary`, debug programs using breakpoints, and create basic unit tests.
+##### Prac A
 
-I also practised using Git to track development progress and learned how refactoring can improve the readability and maintainability of code.
+In Prac A, I learned the basic C# and .NET development workflow. I created and ran console applications, worked with static typing, used the VS Code debugger and breakpoints, and translated a simple Payroll Calculator from Python into C#.
+
+I also created a `Person` class using properties, a constructor, and methods. This introduced me to the basic structure of classes and object-oriented programming in C#.
+
+##### Prac B
+
+In Prac B, I developed my understanding of C# collections by using `List` and `Dictionary` in a command-line Todo application. I also practised input validation and error handling to make the application more reliable.
+
+I learned how to create basic xUnit tests and refactor code into smaller methods with clearer responsibilities. I also continued using Git to record my development progress through separate commits.
 
 #### Week 2
 
-During Week 2, I developed my understanding of class-based design by refactoring the Week 1 Payroll Calculator into a `Payroll` class. I learned how encapsulation can keep data and related behaviour together and how properties with validation can prevent invalid values from being stored.
+##### Prac A
 
-I also improved my unit testing skills using xUnit. I tested both valid and invalid code paths in the `Payroll` class and achieved 100% line coverage. This helped me understand the importance of testing different execution paths rather than only checking whether normal inputs work.
+In Prac A, I developed my understanding of class-based design by refactoring the Week 1 Payroll Calculator into a `Payroll` class. I learned how encapsulation can keep related data and behaviour together and how properties with validation can prevent invalid values from being stored.
+
+I also improved my unit testing skills using xUnit. I tested valid and invalid code paths in the `Payroll` class and achieved 100% line coverage. This helped me understand the importance of testing different execution paths rather than only checking normal inputs.
+
+##### Prac B
+
+In Prac B, I extended my understanding of object-oriented programming by creating a `BankAccount` class. I used encapsulation and access modifiers to control how account data can be accessed and modified. I also used exceptions to prevent invalid deposits, withdrawals, and withdrawals that exceeded the available balance.
+
+I learned how method overloading allows methods to share the same name while accepting different parameter types. I created `Deposit()` overloads for `decimal`, `int`, and `double` values and used casting to reuse the main deposit logic.
+
+I continued developing my unit testing skills by testing successful operations, invalid inputs, exception paths, and overloaded methods. All 10 tests passed, and the `BankAccount` class achieved 100% line coverage.
 
 This README will be updated as I complete additional topics throughout the semester.

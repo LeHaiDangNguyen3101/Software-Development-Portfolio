@@ -55,8 +55,32 @@ Static typing helps me identify type errors while writing or compiling the progr
 
 Sometimes static typing requires extra conversions, such as converting `hours` from `double` to `decimal` during the payroll calculation. However, it helps prevent unexpected type-related errors and makes the expected data types clearer.
 
-### Unit Testing
 
-I created an xUnit test project and wrote tests for the different code paths in the `Payroll` class. The tests check the net pay calculation, valid property changes, and exceptions caused by negative hours, rates, and tax rates.
+## Week 2 - Prac B: BankAccount and Method Overloading
 
-All 10 tests passed, and the `Payroll` class achieved 100% line coverage. This helped me understand that passing tests alone does not guarantee that every part of a class has been tested.
+### What I Learned
+
+In this practical, I created a `BankAccount` class using auto-properties, a constructor, and methods to manage an account. The `Owner` property stores the account owner's name, while the `Balance` property uses a private setter so that the balance cannot be changed directly from outside the class.
+
+I implemented `Deposit()` and `Withdraw()` methods to control changes to the account balance. I also used exceptions to prevent invalid operations such as depositing a non-positive amount, withdrawing a non-positive amount, or withdrawing more money than the available balance.
+
+### Encapsulation in C#
+
+Encapsulation groups related data and behaviour inside a class and controls how the data can be accessed or modified. In my `BankAccount` class, the balance can be read publicly but has a private setter. This means other code cannot directly change the balance and must use the `Deposit()` or `Withdraw()` methods.
+
+This helps protect the object from invalid changes and keeps the rules for managing the balance inside the `BankAccount` class.
+
+### Importance of Access Modifiers
+
+Access modifiers control which parts of a program can access classes, properties, methods, and other members. For example, `public` allows a member to be accessed from outside the class, while `private` restricts access to the class itself.
+
+In the `BankAccount` class, using `public decimal Balance { get; private set; }` allows other code to view the balance but prevents it from changing the balance directly. This makes the class safer and gives better control over its data.
+
+### Method Overloading
+
+Method overloading allows multiple methods to have the same name as long as they have different parameter types or parameter lists. I created three versions of the `Deposit()` method that accept `decimal`, `int`, and `double` values.
+
+C# selects the appropriate method based on the type of argument passed to it. The `int` and `double` versions convert their values to `decimal` and then call the main `Deposit(decimal amount)` method. This avoids repeating the deposit validation and calculation logic.
+
+For a Python programmer, I would explain that C# can define several methods with the same name and choose between them at compile time based on the argument types. Python does not normally use method overloading in the same way because Python is dynamically typed.
+
