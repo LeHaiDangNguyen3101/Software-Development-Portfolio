@@ -3,14 +3,10 @@ Dictionary<string, List<int>> tags = new Dictionary<string, List<int>>();
 
 while (true)
 {
-    static string ReadCommand()
-    {
-        Console.Write("> ");
-        return Console.ReadLine() ?? "";
-    }
+    string input = ReadCommand();
 
     string[] parts = input.Split(' ', 2);
-    string command = parts[0].ToLower();GCNotificationStatus
+    string command = parts[0].ToLower();
 
     switch (command)
     {
@@ -42,6 +38,12 @@ while (true)
             Console.WriteLine("Unknown command.");
             break;
     }
+}
+
+static string ReadCommand()
+{
+    Console.Write("> ");
+    return Console.ReadLine() ?? "";
 }
 
 static void AddTask(List<string> tasks, string[] parts)
