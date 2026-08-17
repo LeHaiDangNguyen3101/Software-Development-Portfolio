@@ -34,3 +34,29 @@
 - **Unit testing:** I used xUnit tests to automatically verify expected behaviour such as `FullName()` and `IsAdult()`.
 - **Refactoring:** I extracted parts of the Todo application into separate methods to improve readability and make the code easier to maintain.
 - **Version control:** I used Git commits to record different stages of development rather than keeping only the final version of the code.
+
+## Week 2 - Prac A: Classes, Properties and Unit Testing
+
+### What I Learned
+
+In this practical, I refactored the procedural Payroll Calculator from Week 1 into a class-based design. I created a `Payroll` class to store payroll data and used methods namely `CalculateNetPay()` and `ChangeTaxRate()` to control its behaviour.
+
+I also learned how to use properties with getters and setters. Validation inside the setters prevents invalid values such as negative hours, rates, or tax rates from being stored in a Payroll object.
+
+### Procedural vs Class-Based Design
+
+In the procedural version, the payroll data and calculation logic were mainly handled directly in `Program.cs`. After changing to a class-based design, the data and related behaviour were grouped inside the `Payroll` class.
+
+I found the class-based version more organised because `Program.cs` only needs to create and use a Payroll object, while the Payroll class is responsible for calculations and validation. This also makes the code easier to reuse, test, and maintain.
+
+### Static Typing
+
+Static typing helps me identify type errors while writing or compiling the program. For example, `hours` uses `double`, while money values such as `rate` and `taxRate` use `decimal`. C# checks that I use these types correctly.
+
+Sometimes static typing requires extra conversions, such as converting `hours` from `double` to `decimal` during the payroll calculation. However, it helps prevent unexpected type-related errors and makes the expected data types clearer.
+
+### Unit Testing
+
+I created an xUnit test project and wrote tests for the different code paths in the `Payroll` class. The tests check the net pay calculation, valid property changes, and exceptions caused by negative hours, rates, and tax rates.
+
+All 10 tests passed, and the `Payroll` class achieved 100% line coverage. This helped me understand that passing tests alone does not guarantee that every part of a class has been tested.
