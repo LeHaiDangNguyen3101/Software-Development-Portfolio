@@ -84,3 +84,23 @@ C# selects the appropriate method based on the type of argument passed to it. Th
 
 For a Python programmer, I would explain that C# can define several methods with the same name and choose between them at compile time based on the argument types. Python does not normally use method overloading in the same way because Python is dynamically typed.
 
+## Week 3 - Prac A
+
+### Inheritance
+
+In this practical, I converted `BankAccount` into a base class and created `SavingsAccount` and `CheckingAccount` as derived classes.
+
+Inheritance reduces duplicated code because both subclasses can reuse common properties and methods from `BankAccount`, such as `Owner`, `Balance`, `Deposit()`, and `Withdraw()`. This means I do not need to rewrite the same banking logic in every account class.
+
+`SavingsAccount` has the responsibility of storing an interest rate and applying interest to the balance using `ApplyInterest()`.
+
+`CheckingAccount` has the responsibility of storing a transaction fee and deducting the fee whenever a withdrawal is made.
+
+I also learned how `base()` calls the constructor or methods from the parent class, while `virtual` and `override` allow subclasses to change inherited behaviour. I used this for `Withdraw()` and `DisplayAccountInfo()`.
+
+### Testing
+
+I created a new xUnit test project and tested the base class and both derived classes. The tests covered valid and invalid constructors, deposits, withdrawals, interest calculations, transaction fees, and overridden display methods.
+
+All 17 tests passed. `SavingsAccount` and `CheckingAccount` both reached 100% line coverage.
+

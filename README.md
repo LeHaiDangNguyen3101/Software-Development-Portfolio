@@ -72,6 +72,21 @@ Prac B includes:
 - Testing successful operations and exception paths.
 - Achieving 100% line coverage for the `BankAccount` class.
 
+### Week 3
+
+#### Prac A
+
+Prac A focuses on inheritance and polymorphism in C#.
+
+It includes:
+
+- Creating base and derived classes.
+- Using `base()` constructors.
+- Creating `SavingsAccount` and `CheckingAccount`.
+- Using `virtual` and `override` methods.
+- Writing xUnit tests for inherited classes.
+- Generating test coverage reports.
+
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.
@@ -171,4 +186,6 @@ I learned how method overloading allows methods to share the same name while acc
 
 I continued developing my unit testing skills by testing successful operations, invalid inputs, exception paths, and overloaded methods. All 10 tests passed, and the `BankAccount` class achieved 100% line coverage.
 
+
 This README will be updated as I complete additional topics throughout the semester.
+
