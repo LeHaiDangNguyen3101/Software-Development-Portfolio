@@ -23,4 +23,9 @@ public class CheckingAccount : BankAccount
         decimal totalAmount = amount + TransactionFee;
         base.Withdraw(totalAmount);
     }
+    public override void DisplayAccountInfo()
+    {
+        base.DisplayAccountInfo();
+        Console.WriteLine($"Transaction fee: ${TransactionFee:F2}");
+    }
 }
