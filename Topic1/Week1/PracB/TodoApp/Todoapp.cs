@@ -4,7 +4,6 @@ Dictionary<string, List<int>> tags = new Dictionary<string, List<int>>();
 while (true)
 {
     string input = ReadCommand();
-
     string[] parts = input.Split(' ', 2);
     string command = parts[0].ToLower();
 
