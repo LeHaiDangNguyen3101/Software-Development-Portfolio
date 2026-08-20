@@ -14,15 +14,11 @@ The portfolio contains source code, tests, reflections, and other practical work
 ## Repository Structure
 
 ### Topic 1
-
 Topic 1 introduces the fundamentals of C# and software development practices.
 
 ### Week 1
-
 #### Prac A
-
 Prac A includes:
-
 - Setting up the .NET development environment.
 - Creating and running C# console applications.
 - Using the VS Code debugger and breakpoints.
@@ -31,9 +27,7 @@ Prac A includes:
 - Using Git for basic version control.
 
 #### Prac B
-
 Prac B includes:
-
 - Using `List<string>` to store tasks.
 - Building a command-line Todo application.
 - Using `Dictionary<string, List<int>>` for task tagging.
@@ -43,11 +37,8 @@ Prac B includes:
 - Applying C# naming and coding conventions.
 
 ### Week 2
-
 #### Prac A
-
 Prac A includes:
-
 - Refactoring the Week 1 Payroll Calculator from procedural code into a `Payroll` class.
 - Using private fields to encapsulate payroll data.
 - Creating a constructor with input validation.
@@ -59,9 +50,7 @@ Prac A includes:
 - Achieving 100% line coverage for the `Payroll` class.
 
 #### Prac B
-
 Prac B includes:
-
 - Creating a `BankAccount` class using auto-properties, a constructor, and methods.
 - Applying encapsulation and access modifiers to protect account data.
 - Implementing `Deposit()` and `Withdraw()` methods with validation.
@@ -73,18 +62,25 @@ Prac B includes:
 - Achieving 100% line coverage for the `BankAccount` class.
 
 ### Week 3
-
 #### Prac A
-
 Prac A focuses on inheritance and polymorphism in C#.
-
 It includes:
-
 - Creating base and derived classes.
 - Using `base()` constructors.
 - Creating `SavingsAccount` and `CheckingAccount`.
 - Using `virtual` and `override` methods.
 - Writing xUnit tests for inherited classes.
+- Generating test coverage reports.
+
+#### Prac B
+Prac B focuses on abstract classes, interfaces, and polymorphism in C#.
+It includes:
+- Creating an abstract `Employee` base class.
+- Creating `FullTimeEmployee` and `Contractor` derived classes.
+- Implementing the `IReportable` interface.
+- Overriding `CalculatePay()` for different employee types.
+- Using a `List<Employee>` to demonstrate polymorphism.
+- Writing xUnit tests for the employee classes.
 - Generating test coverage reports.
 
 ## Running the Projects
@@ -152,39 +148,6 @@ Each topic contains a `Notes.md` file describing:
 - How I solved problems.
 - Important concepts and development practices.
 
-## Learning Progression
-
-### Topic 1
-
-#### Week 1
-
-##### Prac A
-
-In Prac A, I learned the basic C# and .NET development workflow. I created and ran console applications, worked with static typing, used the VS Code debugger and breakpoints, and translated a simple Payroll Calculator from Python into C#.
-
-I also created a `Person` class using properties, a constructor, and methods. This introduced me to the basic structure of classes and object-oriented programming in C#.
-
-##### Prac B
-
-In Prac B, I developed my understanding of C# collections by using `List` and `Dictionary` in a command-line Todo application. I also practised input validation and error handling to make the application more reliable.
-
-I learned how to create basic xUnit tests and refactor code into smaller methods with clearer responsibilities. I also continued using Git to record my development progress through separate commits.
-
-#### Week 2
-
-##### Prac A
-
-In Prac A, I developed my understanding of class-based design by refactoring the Week 1 Payroll Calculator into a `Payroll` class. I learned how encapsulation can keep related data and behaviour together and how properties with validation can prevent invalid values from being stored.
-
-I also improved my unit testing skills using xUnit. I tested valid and invalid code paths in the `Payroll` class and achieved 100% line coverage. This helped me understand the importance of testing different execution paths rather than only checking normal inputs.
-
-##### Prac B
-
-In Prac B, I extended my understanding of object-oriented programming by creating a `BankAccount` class. I used encapsulation and access modifiers to control how account data can be accessed and modified. I also used exceptions to prevent invalid deposits, withdrawals, and withdrawals that exceeded the available balance.
-
-I learned how method overloading allows methods to share the same name while accepting different parameter types. I created `Deposit()` overloads for `decimal`, `int`, and `double` values and used casting to reuse the main deposit logic.
-
-I continued developing my unit testing skills by testing successful operations, invalid inputs, exception paths, and overloaded methods. All 10 tests passed, and the `BankAccount` class achieved 100% line coverage.
 
 
 This README will be updated as I complete additional topics throughout the semester.
