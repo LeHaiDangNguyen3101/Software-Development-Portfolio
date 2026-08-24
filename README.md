@@ -83,6 +83,19 @@ It includes:
 - Writing xUnit tests for the employee classes.
 - Generating test coverage reports.
 
+### Week 4
+#### Prac A
+Prac A focuses on debugging, code analysis, and refactoring in C#.
+It includes:
+- Using breakpoints and stepping through code with the debugger.
+- Using Locals and Watch to inspect variables during execution.
+- Finding and fixing logic and runtime errors.
+- Fixing unreliable input parsing and handling line endings.
+- Using .NET code analysis to identify code-quality issues.
+- Refactoring code to improve readability and structure.
+- Understanding the difference between errors and warnings.
+- Deciding which code-analysis warnings should or should not be fixed.
+
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.
