@@ -123,3 +123,130 @@ CA1305 – Specify culture when parsing: I used CultureInfo.InvariantCulture wit
 IDE0210 – Convert to top-level statements: I kept the BrokenProgram class because the practical was based around this class, and converting it to top-level statements would not make the program significantly clearer.
 IDE0008 – Use explicit type instead of var: I kept var in the foreach loop because the values are easy to understand from the context and it keeps the loop concise.
 CA1303 – Store literal strings in a resource table: I did not change the console messages because this is a small English-only practical program and does not require localisation.
+
+## Week 4 - Prac B
+
+### What I Learned
+
+In this practical, I learned how to understand and work with code written by another developer. Instead of only reading the code, I used the debugger to follow the program step by step and see how the values changed while the program was running.
+
+I used breakpoints, Step Over (F10), Step Into (F11), Locals, Watch, and the Call Stack to understand the flow of the program. I followed how the program reads `Example.txt`, stores the input in lists, loops through the tachyon grid, and processes different characters such as `S`, `^`, and `.`.
+
+I also learned more about C# features such as range syntax, `Index()`, `foreach` loops, `StringBuilder`, and working with lists. Debugging helped me understand that even though the final grid appeared to be processed correctly, the program still reported an incorrect total because `totalCount` was never updated.
+
+### Task 1 - Working with Other People's Code
+
+#### 1. How are the `symbols` and `tachyonGrid` variables different? What does `[..^1]` do?
+
+The `symbols` list contains all the lines created after splitting the contents of `Example.txt` using:
+
+```csharp
+List<string> symbols = [.. srText.Split("\n")];
+```
+
+When I inspected the program using the debugger, `symbols.Count` was `17`. The last element was an empty string because the input file ends with a newline.
+
+The `tachyonGrid` list is created using:
+
+```csharp
+List<string> tachyonGrid = symbols[..^1];
+```
+
+The `[..^1]` range means to take the elements from the beginning of the list up to, but not including, the last element. Therefore, `tachyonGrid` contains the actual 16 rows of the grid while `symbols` contains 17 elements.
+
+---
+
+#### 2. How do `posX` and `character` increment in each iteration of the loop? How is this different from using a `for` loop?
+
+The program uses:
+
+```csharp
+foreach (var (posX, character) in item.Index())
+```
+
+The `Index()` method provides both the position and the character for each element in the string.
+
+`posX` represents the horizontal position of the current character. It starts at `0` and increases as the loop moves from left to right.
+
+`character` contains the actual character at that position, such as `.`, `S`, or `^`.
+
+For example, when I stopped the debugger at the starting position, I could see values similar to:
+
+```text
+posY = 0
+posX = 7
+character = 'S'
+```
+
+This showed that the program had found `S` at horizontal position 7 on row 0.
+
+This is different from a normal `for` loop because I do not need to manually create and increment an index variable. `Index()` gives the program both the index and the value during each iteration.
+
+---
+
+#### 3. What happens when a single empty square has a splitter on either side? Is this approach correct?
+
+The `processSplitter()` method checks whether a beam `|` exists directly above a splitter `^`.
+
+If it does, the program executes:
+
+```csharp
+sb[posX - 1] = '|';
+sb[posX + 1] = '|';
+```
+
+This creates a new beam on both sides of the splitter.
+
+For example:
+
+```text
+Before:
+
+.......|.......
+.......^.......
+
+After:
+
+.......|.......
+......|^|......
+```
+
+When two splitters send a beam into the same empty square, the program can write `|` into that same position more than once. However, the grid still displays only one `|` because assigning the same character again does not visually change the square.
+
+This approach works for showing whether a beam exists in a position. However, it does not keep information about multiple beam paths reaching the same square. This could be important if the program needs to correctly count individual splitting events.
+
+---
+
+#### 4. What does the program currently output? Why do I think the reported total is incorrect?
+
+When I ran the original program using `Example.txt`, the program displayed the starting tachyon grid and then the processed grid containing the `|` beam paths.
+
+However, at the end it reported:
+
+```text
+Total Tachyon Manifold splits were: 0
+If using Example.txt, your total should be 21
+If using Example.txt, your total is WRONG
+```
+
+The expected result is `21`, but the program reports `0`.
+
+From debugging the program, I found that `totalCount` is created in `Main()`:
+
+```csharp
+int totalCount = 0;
+```
+
+However, its value is never increased.
+
+The program calls:
+
+```csharp
+processSplitter(posX, posY, tachyonGrid);
+```
+
+when it finds a splitter, but `processSplitter()` currently returns `void`.
+
+This means that `processSplitter()` can change the grid, but it does not return any information to `Main()` that can be added to `totalCount`.
+
+Therefore, the visual grid can appear to work while the final split count remains incorrect.
