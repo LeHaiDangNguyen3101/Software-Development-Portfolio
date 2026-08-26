@@ -21,7 +21,6 @@ public static class Program
     /// <param name="tachyonGrid">The tachyon manifold grid being processed.</param>
     public static void processStart(int posX, int posY, List<string> tachyonGrid)
     {
-        // process start
         string line = tachyonGrid[posY + 1];
         StringBuilder sb = new StringBuilder(line);
         sb[posX] = '|';
@@ -39,7 +38,6 @@ public static class Program
     /// <param name="tachyonGrid">The tachyon manifold grid being processed.</param>
     public static void processSplitter(int posX, int posY, List<string> tachyonGrid)
     { 
-        // process splitter
         string line = tachyonGrid[posY];
         StringBuilder sb = new StringBuilder(line);
         if (tachyonGrid[posY - 1][posX] == '|')
@@ -61,7 +59,6 @@ public static class Program
     /// <param name="tachyonGrid">The tachyon manifold grid being processed.</param>
     public static void processEmpty(int posX, int posY, List<string> tachyonGrid)
     {
-        // process empty
         string line = tachyonGrid[posY];
         StringBuilder sb = new StringBuilder(line);
         if (tachyonGrid[posY - 1][posX] == '|')
@@ -74,7 +71,6 @@ public static class Program
 
     public static void Main(string[] args)
     {
-        // main
         var sr = new StreamReader(FileToRead);
         string srText = sr.ReadToEnd();
         int totalCount = 0;
@@ -108,15 +104,15 @@ public static class Program
                 }
             }
         }
-        Console.WriteLine($"Begin Taychon Manifold end state");
+        Console.WriteLine("Begin Taychon Manifold end state");
 
         foreach (var item in tachyonGrid)
         {
             Console.WriteLine(item);
         }
-        Console.WriteLine($"End Taychon Manifold end state");
-        Console.WriteLine($"Total Tachyon Manifold splits were: {totalCount}");
-        Console.WriteLine($"If using Example.txt, your total should be 21");
+        Console.WriteLine("End Taychon Manifold end state");
+        Console.WriteLine("Total Tachyon Manifold splits were: {totalCount}");
+        Console.WriteLine("If using Example.txt, your total should be 21");
         Console.WriteLine($"If using Example.txt, your total is {(totalCount == 21 ? "RIGHT": "WRONG")}");
     }
 }
