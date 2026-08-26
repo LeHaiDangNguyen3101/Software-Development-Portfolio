@@ -36,17 +36,22 @@ public static class Program
     /// <param name="posX">The horizontal position of the splitter.</param>
     /// <param name="posY">The vertical position of the splitter.</param>
     /// <param name="tachyonGrid">The tachyon manifold grid being processed.</param>
-    public static void processSplitter(int posX, int posY, List<string> tachyonGrid)
-    { 
+    public static int processSplitter(int posX, int posY, List<string> tachyonGrid)
+    {
         string line = tachyonGrid[posY];
         StringBuilder sb = new StringBuilder(line);
+
         if (tachyonGrid[posY - 1][posX] == '|')
         {
             sb[posX - 1] = '|';
             sb[posX + 1] = '|';
             line = sb.ToString();
             tachyonGrid[posY] = line;
+
+            return 1;
         }
+
+        return 0;
     }
 
     /// <summary>
@@ -96,7 +101,7 @@ public static class Program
                 }
                 else if (character == '^')
                 {
-                    processSplitter(posX, posY, tachyonGrid);
+                    totalCount += processSplitter(posX, posY, tachyonGrid);
                 }
                 else if (posY != 0)
                 {
@@ -111,7 +116,7 @@ public static class Program
             Console.WriteLine(item);
         }
         Console.WriteLine("End Taychon Manifold end state");
-        Console.WriteLine("Total Tachyon Manifold splits were: {totalCount}");
+        Console.WriteLine($"Total Tachyon Manifold splits were: {totalCount}");
         Console.WriteLine("If using Example.txt, your total should be 21");
         Console.WriteLine($"If using Example.txt, your total is {(totalCount == 21 ? "RIGHT": "WRONG")}");
     }
