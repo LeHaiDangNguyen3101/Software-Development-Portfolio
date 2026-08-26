@@ -95,6 +95,18 @@ It includes:
 - Refactoring code to improve readability and structure.
 - Understanding the difference between errors and warnings.
 - Deciding which code-analysis warnings should or should not be fixed.
+#### Prac B
+Prac B focuses on understanding, documenting, refactoring, and fixing unfamiliar C# code.
+It includes:
+- Using the debugger to understand code written by another developer.
+- Using Step Into and Step Over to follow method execution.
+- Working with `Index()` and C# range syntax such as `[..^1]`.
+- Understanding `StringBuilder` and grid-based processing.
+- Writing XML documentation comments for methods and parameters.
+- Using the `Recommended` .NET code-analysis mode.
+- Making small readability refactors.
+- Changing a `void` method to return an `int`.
+- Updating `totalCount` so the program reports the correct split total.
 
 ## Running the Projects
 

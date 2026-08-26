@@ -128,11 +128,17 @@ CA1303 – Store literal strings in a resource table: I did not change the conso
 
 ### What I Learned
 
-In this practical, I learned how to understand and work with code written by another developer. Instead of only reading the code, I used the debugger to follow the program step by step and see how the values changed while the program was running.
+In this practical, I learned how to understand and work with code written by another developer. Instead of only reading the code, I used the debugger to follow the program step by step and see how values changed while the program was running.
 
 I used breakpoints, Step Over (F10), Step Into (F11), Locals, Watch, and the Call Stack to understand the flow of the program. I followed how the program reads `Example.txt`, stores the input in lists, loops through the tachyon grid, and processes different characters such as `S`, `^`, and `.`.
 
 I also learned more about C# features such as range syntax, `Index()`, `foreach` loops, `StringBuilder`, and working with lists. Debugging helped me understand that even though the final grid appeared to be processed correctly, the program still reported an incorrect total because `totalCount` was never updated.
+
+I learned how to use XML documentation comments with tags such as `<summary>` and `<param>` to explain what methods do and what their parameters are used for. This makes the code easier for other developers to understand and also provides useful information through IntelliSense.
+
+I also used the `Recommended` code analysis mode to check the project for possible code quality problems. The project built successfully without analyzer warnings, which showed me that code analysis does not always require changes. I learned that I should review analyzer suggestions and only make changes when they improve the code.
+
+Finally, I fixed the incorrect tachyon split count by changing `processSplitter()` from a `void` method to a method that returns an `int`. It returns `1` when a split happens and `0` when no split happens. The returned value is then added to `totalCount`. After this change, the program correctly reported a total of `21`. This helped me understand how return values can be used to communicate information between methods and how debugging can be used to find and fix logical errors.
 
 ### Task 1 - Working with Other People's Code
 
