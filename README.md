@@ -108,6 +108,21 @@ It includes:
 - Changing a `void` method to return an `int`.
 - Updating `totalCount` so the program reports the correct split total.
 
+## Topic 2
+
+Topic 2 focuses on working with collections and data structures in C#.
+
+### Week 5
+
+#### Prac A - Arrays and Lists
+
+- Created and worked with `string[]` arrays.
+- Used loops to access array values and find the shortest and longest names.
+- Sorted and reversed arrays using `Array.Sort()` and `Array.Reverse()`.
+- Created and modified `List<string>` using `Add()`, `Remove()`, `Insert()`, and `AddRange()`.
+- Searched lists using `IndexOf()` and `Contains()`.
+- Converted between `string[]` and `List<string>`.
+- Compared the syntax, flexibility, performance, and use cases of arrays and lists.
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.
