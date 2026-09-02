@@ -123,6 +123,17 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Searched lists using `IndexOf()` and `Contains()`.
 - Converted between `string[]` and `List<string>`.
 - Compared the syntax, flexibility, performance, and use cases of arrays and lists.
+
+#### Prac B - Linked Lists and Collections of Classes
+
+- Used `LinkedList<T>` and `LinkedListNode<T>` to work with linked nodes.
+- Inserted values using `AddFirst()`, `AddLast()`, `AddBefore()`, and `AddAfter()`.
+- Removed values using `Remove()`, `RemoveFirst()`, and `RemoveLast()`.
+- Traversed a linked list using `First` and `Next` instead of indexes.
+- Created collections of `Person` objects using `List<Person>` and `LinkedList<Person>`.
+- Implemented `ToLinkedList()`, `PrintPeople()`, and `SortPeople()`.
+- Sorted people from youngest to oldest using a linked-list sorting algorithm.
+- Learned how reference types allow the same object changes to appear across different collections.
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.
