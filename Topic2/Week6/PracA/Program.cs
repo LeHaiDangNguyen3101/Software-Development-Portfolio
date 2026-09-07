@@ -5,38 +5,45 @@ class Program
 {
     static void Main()
     {
-        Stack<string> undoHistory = new Stack<string>();
+        Stack<BankAccount> accounts = new Stack<BankAccount>();
 
-        Console.WriteLine("-- Text Editor Undo History --");
+        accounts.Push(new BankAccount("Alice", 100m));
+        accounts.Push(new BankAccount("Bob", 250m));
+        accounts.Push(new BankAccount("Charlie", 150m));
+        accounts.Push(new BankAccount("David", 500m));
+        accounts.Push(new BankAccount("Emma", 300m));
+        accounts.Push(new BankAccount("Frank", 450m));
+        accounts.Push(new BankAccount("Grace", 200m));
+        accounts.Push(new BankAccount("Henry", 350m));
+        accounts.Push(new BankAccount("Isabella", 50m));
+        accounts.Push(new BankAccount("Jack", 400m));
 
-        // Add actions to the stack
-        undoHistory.Push("Typed Text");
-        undoHistory.Push("Inserted Image");
-        undoHistory.Push("Changed Colour");
+        Console.WriteLine("-- Stack<BankAccount> --");
 
-        Console.WriteLine("\nInitial stack:");
-        PrintStack(undoHistory);
+        foreach (BankAccount account in accounts)
+        {
+            Console.WriteLine($"{account.Owner}: ${account.Balance:F2}");
+        }
 
-        // Peek at the top item
-        Console.WriteLine($"\nTop action using Peek(): {undoHistory.Peek()}");
+        Queue<BankAccount> accountQueue = StackToQueue(accounts);
 
-        Console.WriteLine("\nStack after Peek():");
-        PrintStack(undoHistory);
+        Console.WriteLine("\n-- Queue<BankAccount> --");
 
-        // Remove the top item
-        string removedAction = undoHistory.Pop();
-
-        Console.WriteLine($"\nRemoved action using Pop(): {removedAction}");
-
-        Console.WriteLine("\nStack after Pop():");
-        PrintStack(undoHistory);
+        foreach (BankAccount account in accountQueue)
+        {
+            Console.WriteLine($"{account.Owner}: ${account.Balance:F2}");
+        }
     }
 
-    static void PrintStack(Stack<string> stack)
+    static Queue<BankAccount> StackToQueue(Stack<BankAccount> stack)
     {
-        foreach (string action in stack)
+        Queue<BankAccount> queue = new Queue<BankAccount>();
+
+        foreach (BankAccount account in stack)
         {
-            Console.WriteLine(action);
+            queue.Enqueue(account);
         }
+
+        return queue;
     }
 }
