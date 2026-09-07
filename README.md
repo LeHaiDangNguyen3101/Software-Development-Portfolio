@@ -134,6 +134,17 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Implemented `ToLinkedList()`, `PrintPeople()`, and `SortPeople()`.
 - Sorted people from youngest to oldest using a linked-list sorting algorithm.
 - Learned how reference types allow the same object changes to appear across different collections.
+
+### Week 6
+
+#### Prac A - Stacks, Queues and Sorting
+
+- Used `Stack<T>` and learned how LIFO (Last In, First Out) works with `Push()`, `Peek()`, and `Pop()`.
+- Used `Queue<T>` and learned how FIFO (First In, First Out) works with `Enqueue()`, `Peek()`, and `Dequeue()`.
+- Worked with `Stack<BankAccount>` and `Queue<BankAccount>` instead of only simple string values.
+- Created a `StackToQueue()` method to convert a stack into a queue while keeping the same displayed order.
+- Implemented a bubble sort algorithm to sort bank accounts from lowest to highest balance.
+- Practised comparing neighbouring values and swapping objects without using a built-in sorting method.
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.
