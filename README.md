@@ -145,6 +145,17 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Created a `StackToQueue()` method to convert a stack into a queue while keeping the same displayed order.
 - Implemented a bubble sort algorithm to sort bank accounts from lowest to highest balance.
 - Practised comparing neighbouring values and swapping objects without using a built-in sorting method.
+
+#### Prac B - LINQ with Lists, Stacks and Queues
+
+- Learned how to use LINQ to query and transform C# collections.
+- Used `OrderBy()` to sort a `List<string>` alphabetically without changing the original list.
+- Used `Select()` to retrieve the `Owner` property from `BankAccount` objects.
+- Applied the same LINQ queries to both `Stack<BankAccount>` and `Queue<BankAccount>`.
+- Used `Where()` to filter bank accounts based on the owner's name.
+- Chained `Where()`, `Select()`, and `OrderBy()` to filter, select, and sort data.
+- Learned how lambda expressions such as `x => x.Owner` work in LINQ.
+- Learned that LINQ can work with collections that implement `IEnumerable<T>`.
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.
