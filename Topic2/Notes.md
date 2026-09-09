@@ -59,6 +59,12 @@ Finally, I learned how to sort bank accounts by balance using a bubble sort algo
 
 ## Prac B: LINQ with Lists, Stacks and Queues
 
+### What I Learned
+
+In this practical, I learned how to use LINQ to query and transform C# collections. I used `OrderBy()` to sort a list alphabetically, `Select()` to choose specific properties from `BankAccount` objects, and `Where()` to filter accounts based on a condition.
+
+I also learned that LINQ works with different collections such as `List<T>`, `Stack<T>`, and `Queue<T>` because they implement `IEnumerable<T>`. LINQ methods return new query results instead of changing the original collection. I also became more familiar with lambda expressions such as `x => x.Owner` and method chaining using `Where()`, `Select()`, and `OrderBy()`.
+
 ### Reflection Questions
 
 #### Task 1
