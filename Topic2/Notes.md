@@ -56,3 +56,45 @@ In this practical, I learned how to use `Stack<T>` and `Queue<T>` in C#. A stack
 I also learned how to use stacks and queues with objects such as `BankAccount`. I created a `Stack<BankAccount>` and wrote a `StackToQueue()` method to convert it into a `Queue<BankAccount>` while keeping the same displayed order.
 
 Finally, I learned how to sort bank accounts by balance using a bubble sort algorithm. I copied the queue into a list, compared neighbouring balances, swapped them when they were in the wrong order, and then placed the sorted accounts back into a queue. This helped me understand how a basic sorting algorithm works instead of relying on a built-in sorting method.
+
+## Prac B: LINQ with Lists, Stacks and Queues
+
+### Reflection Questions
+
+#### Task 1
+
+**What type is your `List.OrderBy(x => x)` before converting it back to a list?**
+
+It returns an `IOrderedEnumerable<string>`, not a `List<string>`.
+
+**Why does `.OrderBy()` return ordered results instead of sorting the original list in place like `.Sort()`?**
+
+LINQ methods normally return a new result and do not change the original collection. This makes the original data stay unchanged.
+
+**What is the purpose of `x => x` in `List.OrderBy(x => x)`?**
+
+The first `x` represents each item in the list, and the second `x` means the item itself is used as the value for sorting.
+
+**What does `x` mean? Can I use any name? Why doesn't `x` have a type?**
+
+`x` is just a parameter name for each item. I can use another name such as `name => name`. C# can infer the type automatically from the collection.
+
+#### Task 2
+
+**Did the syntax need to change between your Stack and Queue select? Why or why not?**
+
+No. The LINQ syntax stayed the same because both `Stack<T>` and `Queue<T>` implement `IEnumerable<T>`, so LINQ can work with both collections.
+
+#### Task 3
+
+**Compared to the stack sorting algorithm in the previous practical, which did you prefer and why?**
+
+I preferred LINQ because it is shorter and easier to read. The previous bubble sort required loops, comparisons and swapping, while LINQ can filter, select and sort using a few chained methods.
+
+**Did you find the LINQ syntax unusual, or was it intuitive?**
+
+At first the lambda syntax such as `x => x.Owner` looked unusual, but after using it several times it became easier to understand.
+
+**Did the syntax need to change between your Stack and Queue select? Why or why not?**
+
+No. The same LINQ methods worked for both Stack and Queue because both collections support enumeration through `IEnumerable<T>`.
