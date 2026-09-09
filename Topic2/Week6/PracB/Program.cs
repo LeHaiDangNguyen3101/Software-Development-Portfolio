@@ -32,26 +32,36 @@ class Program
         accountQueue.Enqueue(new BankAccount("Isabella", 50m));
         accountQueue.Enqueue(new BankAccount("Jack", 400m));
 
-        var stackOwners = accountStack
-            .Select(x => x.Owner)
-            .OrderBy(x => x);
+        var stackResults = accountStack
+            .Where(x => x.Owner.Contains("e"))
+            .Select(x => new
+            {
+                x.Owner,
+                x.Balance
+            })
+            .OrderBy(x => x.Balance);
 
-        Console.WriteLine("-- Stack Owners Ordered by Name --");
+        Console.WriteLine("-- Stack Results --");
 
-        foreach (string owner in stackOwners)
+        foreach (var account in stackResults)
         {
-            Console.WriteLine(owner);
+            Console.WriteLine($"{account.Owner}: ${account.Balance:F2}");
         }
 
-        var queueOwners = accountQueue
-            .Select(x => x.Owner)
-            .OrderBy(x => x);
+        var queueResults = accountQueue
+            .Where(x => x.Owner.Contains("e"))
+            .Select(x => new
+            {
+                x.Owner,
+                x.Balance
+            })
+            .OrderBy(x => x.Balance);
 
-        Console.WriteLine("\n-- Queue Owners Ordered by Name --");
+        Console.WriteLine("\n-- Queue Results --");
 
-        foreach (string owner in queueOwners)
+        foreach (var account in queueResults)
         {
-            Console.WriteLine(owner);
+            Console.WriteLine($"{account.Owner}: ${account.Balance:F2}");
         }
     }
 }
