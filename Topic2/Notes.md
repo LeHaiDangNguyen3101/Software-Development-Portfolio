@@ -104,3 +104,34 @@ At first the lambda syntax such as `x => x.Owner` looked unusual, but after usin
 **Did the syntax need to change between your Stack and Queue select? Why or why not?**
 
 No. The same LINQ methods worked for both Stack and Queue because both collections support enumeration through `IEnumerable<T>`.
+
+
+## Week 7 - Prac A: SortedSet and Data Plotting
+
+### What I Learned
+
+In this practical, I learned how to use `SortedSet` in C# to store data in sorted order while preventing duplicate values. In Task 1, I used a `SortedSet<int>` to store game scores. The scores were automatically sorted, so I did not need to use `.Sort()`. I also used the `Min` and `Max` properties to find the lowest and highest scores.
+
+In Task 2, I learned that a `SortedSet` needs to know how objects should be compared. When I tried to use `SortedSet<BankAccount>` without a comparer, the program produced a runtime error because `BankAccount` did not implement a default comparison. I fixed this by creating a `BankComparer` class that implements `IComparer<BankAccount>`. I compared accounts by their balance first and then by owner name when the balances were equal.
+
+In Task 3, I learned how to use ScottPlot to visualise data in C#. I extracted the balances from the `SortedSet<BankAccount>` using LINQ `Select()` and converted them to a `double[]` using `ToArray()`. I then created a bar chart, added axis labels, changed the label font size and saved the graph as a PNG file.
+
+### Reflection Questions
+
+**1. Did you need to run `.Sort()` or similar on your `SortedSet` to maintain its ordering? Why or why not?**
+
+No. `SortedSet` automatically keeps its elements in sorted order when values are added, so I did not need to manually call `.Sort()`.
+
+**2. What is the underlying data structure used by `SortedSet`? How did you find out?**
+
+`SortedSet` uses a self-balancing binary search tree, specifically a red-black tree. I found this by checking how `SortedSet` works in the .NET documentation.
+
+**3. What happened when you tried to add the duplicate score to the set? Why does `SortedSet` behave this way?**
+
+The duplicate score was not added and only one copy remained in the set. This is because `SortedSet` only stores unique values and does not allow duplicate elements.
+
+### Difficulties and Solutions
+
+The main difficulty was using `SortedSet` with `BankAccount` objects. The program initially produced an `ArgumentException` because C# did not know how to compare two `BankAccount` objects. I solved this by creating `BankComparer` with `IComparer<BankAccount>` and defining the comparison using balance and owner name.
+
+Another new part was using ScottPlot. I needed to convert the account balances into a `double[]` before passing the data to the bar chart. Using LINQ `Select()` and `ToArray()` made this easier.

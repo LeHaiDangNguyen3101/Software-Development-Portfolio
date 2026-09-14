@@ -156,6 +156,21 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Chained `Where()`, `Select()`, and `OrderBy()` to filter, select, and sort data.
 - Learned how lambda expressions such as `x => x.Owner` work in LINQ.
 - Learned that LINQ can work with collections that implement `IEnumerable<T>`.
+
+### Week 7
+
+#### Prac A - SortedSet and Data Plotting
+
+- Used `SortedSet<int>` to store unique scores in automatically sorted order.
+- Used `Min` and `Max` to find the lowest and highest scores.
+- Learned how `SortedSet` handles duplicate values.
+- Used `SortedSet<BankAccount>` with a custom `IComparer<BankAccount>`.
+- Created a `BankComparer` to sort bank accounts by balance and owner name.
+- Used LINQ `Select()` and `ToArray()` to extract account balances.
+- Used ScottPlot to create a bar chart from the bank account data.
+- Added axis labels, changed font sizes, and saved the graph as `Topic7A-Task3.png`.
+
+
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.
