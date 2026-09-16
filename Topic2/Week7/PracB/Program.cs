@@ -2,6 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
+// =========================
+// Task 4: Priority Enum
+// =========================
+
+public enum Priority
+{
+    HighPriority,
+    MediumPriority,
+    LowPriority
+}
+
 class Program
 {
     static void Main()
@@ -203,6 +214,45 @@ class Program
         while (eventQueue.Count != 0)
         {
             Player player = eventQueue.Dequeue();
+            Console.WriteLine(player.Name);
+        }
+
+        // =========================
+        // Task 4: PriorityQueue with Enum Priority
+        // =========================
+
+        Console.WriteLine("\n--- Task 4: PriorityQueue with Enum Priority ---");
+
+        // Create a PriorityQueue using the Priority enum
+        var eventQueue2 = new PriorityQueue<Player, Priority>();
+
+        // Add players with different priorities
+        eventQueue2.Enqueue(new Player("Alice"), Priority.MediumPriority);
+        eventQueue2.Enqueue(new Player("Bob"), Priority.HighPriority);
+        eventQueue2.Enqueue(new Player("Charlie"), Priority.LowPriority);
+        eventQueue2.Enqueue(new Player("David"), Priority.HighPriority);
+        eventQueue2.Enqueue(new Player("Emma"), Priority.MediumPriority);
+
+        Console.WriteLine("\n--- Processing Players with Enum Priority ---");
+
+        // Process players in priority order
+        while (eventQueue2.Count != 0)
+        {
+            Player player = eventQueue2.Dequeue();
+            Console.WriteLine(player.Name);
+        }
+
+        // Test players with the same priority
+        Console.WriteLine("\n--- Testing Same Enum Priority ---");
+
+        eventQueue2.Enqueue(new Player("Frank"), Priority.HighPriority);
+        eventQueue2.Enqueue(new Player("Grace"), Priority.MediumPriority);
+        eventQueue2.Enqueue(new Player("Henry"), Priority.MediumPriority);
+        eventQueue2.Enqueue(new Player("Isabella"), Priority.LowPriority);
+
+        while (eventQueue2.Count != 0)
+        {
+            Player player = eventQueue2.Dequeue();
             Console.WriteLine(player.Name);
         }
 
