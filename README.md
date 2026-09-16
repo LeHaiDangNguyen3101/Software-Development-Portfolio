@@ -170,6 +170,16 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Used ScottPlot to create a bar chart from the bank account data.
 - Added axis labels, changed font sizes, and saved the graph as `Topic7A-Task3.png`.
 
+### Prac B - SortedDictionary and PriorityQueue
+
+- Created a player ranking system using `SortedDictionary`.
+- Learned that dictionary keys must be unique while values can be duplicated.
+- Used custom `ScoreEntry` objects as keys with `IComparer<ScoreEntry>`.
+- Created a `ScoreComparer` to sort players by score and stage reached.
+- Used `PriorityQueue<Player, int>` for priority-based player scheduling.
+- Tested multiple players with the same priority.
+- Used a `Priority` enum instead of integers to make priorities easier to understand.
+- Compared the behaviour of `SortedSet`, `SortedDictionary`, and `PriorityQueue`.
 
 ## Running the Projects
 

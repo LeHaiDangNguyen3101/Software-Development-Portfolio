@@ -135,3 +135,53 @@ The duplicate score was not added and only one copy remained in the set. This is
 The main difficulty was using `SortedSet` with `BankAccount` objects. The program initially produced an `ArgumentException` because C# did not know how to compare two `BankAccount` objects. I solved this by creating `BankComparer` with `IComparer<BankAccount>` and defining the comparison using balance and owner name.
 
 Another new part was using ScottPlot. I needed to convert the account balances into a `double[]` before passing the data to the bar chart. Using LINQ `Select()` and `ToArray()` made this easier.
+
+## Prac B: SortedDictionary and PriorityQueue
+
+### Reflection Questions
+
+#### Task 1: SortedDictionary
+
+**1. What is the data structure backing the SortedDictionary? How did you find out?**
+
+`SortedDictionary` is backed by a self-balancing binary search tree. I found this from the .NET documentation and also from the runtime error, which showed `TreeSet` in the error information.
+
+**2. What happened when you tried to add a duplicate score? Why?**
+
+When I tried to add a duplicate score, the program threw an `ArgumentException` because the score was being used as the key. A `SortedDictionary` requires every key to be unique, so two players cannot have the same integer key.
+
+**3. Contrast SortedSet and SortedDictionary. Provide an example of when each might be useful.**
+
+A `SortedSet` stores unique values and automatically keeps them sorted. It could be used for storing a unique set of game scores. A `SortedDictionary` stores key-value pairs and sorts them by key. It could be used for a ranking system where the score is the key and the player name is the value.
+
+#### Task 3: PriorityQueue
+
+**1. What data structure backs a PriorityQueue? How did you find out?**
+
+A `PriorityQueue` is backed by a heap data structure. I found this from the .NET documentation. The heap allows the queue to efficiently find and remove the item with the highest priority.
+
+**2. What happens when you Enqueue two different players with the same priority?**
+
+Both players can be added to the `PriorityQueue`. Unlike a `SortedSet`, duplicate priorities are allowed. However, the order of players with the same priority is not guaranteed.
+
+**3. Why does a PriorityQueue permit duplicates when a SortedSet does not?**
+
+A `PriorityQueue` uses the priority to decide which item should be processed next, so multiple items are allowed to have the same priority. A `SortedSet` represents a set of unique values, so values that compare as equal are treated as duplicates.
+
+#### Task 4: Priority Enum
+
+**1. Why did we not need to implement IComparer or IComparable for the Priority enum?**
+
+We did not need to create a custom comparer because enum values already have an underlying numeric order. In our enum, `HighPriority` is 0, `MediumPriority` is 1, and `LowPriority` is 2, so the `PriorityQueue` can compare them automatically.
+
+**2. If we used a struct with `int Priority { get; set; } = 0` instead of an enum, would we need IComparer or IComparable? Why?**
+
+Yes, if the struct itself was used as the priority type, we would need to provide a way to compare the struct objects, such as implementing `IComparable` or providing an `IComparer`. The `PriorityQueue` needs to know how one priority object should be ordered compared with another.
+
+### What I Learned
+
+In this practical, I learned how to use `SortedDictionary` and `PriorityQueue` to store and organise data automatically. I used a `SortedDictionary<int, string>` to create player rankings and learned that dictionary keys must be unique while values can be duplicated.
+
+I also used custom `ScoreEntry` objects as dictionary keys. Because C# did not know how to compare these objects automatically, I created a `ScoreComparer` using `IComparer<ScoreEntry>` to compare the score first and the stage reached when scores were equal.
+
+Finally, I learned how `PriorityQueue` processes items based on priority. I tested both integer priorities and an enum called `Priority`. I learned that lower priority values are processed first and multiple players can have the same priority.
