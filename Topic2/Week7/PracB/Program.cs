@@ -164,5 +164,47 @@ class Program
 
         Console.WriteLine(
             "Lucas added to two different ScoreEntry keys.");
+        // =========================
+        // Task 3: PriorityQueue for Priority Player Scheduling
+        // =========================
+
+        Console.WriteLine("\n--- Task 3: Priority Player Scheduling ---");
+
+        // Create a PriorityQueue where:
+        // Player = item being stored
+        // int = priority
+        var eventQueue = new PriorityQueue<Player, int>();
+
+        // Add players with different priorities
+        // Lower number means higher priority
+        eventQueue.Enqueue(new Player("Alice"), 3);
+        eventQueue.Enqueue(new Player("Bob"), 1);
+        eventQueue.Enqueue(new Player("Charlie"), 4);
+        eventQueue.Enqueue(new Player("David"), 2);
+        eventQueue.Enqueue(new Player("Emma"), 5);
+
+        Console.WriteLine("\n--- Processing Players by Priority ---");
+
+        // Process players in priority order
+        while (eventQueue.Count != 0)
+        {
+            Player player = eventQueue.Dequeue();
+            Console.WriteLine(player.Name);
+        }
+
+        // Add players again to test the same priority
+        Console.WriteLine("\n--- Testing Same Priority ---");
+
+        eventQueue.Enqueue(new Player("Frank"), 1);
+        eventQueue.Enqueue(new Player("Grace"), 2);
+        eventQueue.Enqueue(new Player("Henry"), 2);
+        eventQueue.Enqueue(new Player("Isabella"), 3);
+
+        while (eventQueue.Count != 0)
+        {
+            Player player = eventQueue.Dequeue();
+            Console.WriteLine(player.Name);
+        }
+
     }
 }
