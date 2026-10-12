@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
+using System.Text;
 
 // Task 1: Using Hashtable
 
@@ -81,3 +83,59 @@ foreach (KeyValuePair<Player, int> entry in playerScores)
 {
     Console.WriteLine($"{entry.Key.Name}: {entry.Value}");
 }
+
+ // Task 2
+ Console.WriteLine("\n-- Task 2: Benchmarking --");
+
+ int iterations = 100_000;
+
+ // Method 1
+ Console.WriteLine("\n-- Method 1: String Append --");
+
+ string aOutput = "";
+
+ Stopwatch appendWatch = new Stopwatch();
+ appendWatch.Start();
+
+ for (int i = 0; i < iterations; i++)
+ {
+     aOutput += "z";
+ }
+
+ appendWatch.Stop();
+
+ Console.WriteLine($"Append time: {appendWatch.Elapsed.TotalMilliseconds:F2} ms");
+
+
+ // Method 2: Build using StringBuilder
+ Console.WriteLine("\n-- Method 2: StringBuilder --");
+
+ StringBuilder bOutput = new StringBuilder();
+
+ Stopwatch buildWatch = new Stopwatch();
+ buildWatch.Start();
+
+ for (int i = 0; i < iterations; i++)
+ {
+     bOutput.Append("z");
+ }
+
+ buildWatch.Stop();
+
+ Console.WriteLine($"Build time: {buildWatch.Elapsed.TotalMilliseconds:F2} ms");
+
+ // Compare the two methods
+ Console.WriteLine("\n-- Performance Comparison --");
+
+ Console.WriteLine($"Append length: {aOutput.Length}");
+ Console.WriteLine($"Build length: {bOutput.Length}");
+
+ if (appendWatch.Elapsed.TotalMilliseconds > buildWatch.Elapsed.TotalMilliseconds)
+ {
+     Console.WriteLine("StringBuilder was faster!");
+ }
+ else
+ {
+     Console.WriteLine("Normal string concatenation was faster!");
+ }
+
