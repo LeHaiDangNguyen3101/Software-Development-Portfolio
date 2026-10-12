@@ -1,4 +1,4 @@
-﻿
+﻿using ScottPlot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -84,58 +84,154 @@ foreach (KeyValuePair<Player, int> entry in playerScores)
     Console.WriteLine($"{entry.Key.Name}: {entry.Value}");
 }
 
- // Task 2
- Console.WriteLine("\n-- Task 2: Benchmarking --");
+// Task 2
+Console.WriteLine("\n-- Task 2: Benchmarking --");
 
- int iterations = 100_000;
+int iterations = 100_000;
 
- // Method 1
- Console.WriteLine("\n-- Method 1: String Append --");
+// Method 1
+Console.WriteLine("\n-- Method 1: String Append --");
 
- string aOutput = "";
+string aOutput = "";
 
- Stopwatch appendWatch = new Stopwatch();
- appendWatch.Start();
+Stopwatch appendWatch = new Stopwatch();
+appendWatch.Start();
 
- for (int i = 0; i < iterations; i++)
- {
-     aOutput += "z";
- }
+for (int i = 0; i < iterations; i++)
+{
+    aOutput += "z";
+}
 
- appendWatch.Stop();
+appendWatch.Stop();
 
- Console.WriteLine($"Append time: {appendWatch.Elapsed.TotalMilliseconds:F2} ms");
+Console.WriteLine($"Append time: {appendWatch.Elapsed.TotalMilliseconds:F2} ms");
 
 
- // Method 2: Build using StringBuilder
- Console.WriteLine("\n-- Method 2: StringBuilder --");
+// Method 2: Build using StringBuilder
+Console.WriteLine("\n-- Method 2: StringBuilder --");
 
- StringBuilder bOutput = new StringBuilder();
+StringBuilder bOutput = new StringBuilder();
 
- Stopwatch buildWatch = new Stopwatch();
- buildWatch.Start();
+Stopwatch buildWatch = new Stopwatch();
+buildWatch.Start();
 
- for (int i = 0; i < iterations; i++)
- {
-     bOutput.Append("z");
- }
+for (int i = 0; i < iterations; i++)
+{
+    bOutput.Append("z");
+}
 
- buildWatch.Stop();
+buildWatch.Stop();
 
- Console.WriteLine($"Build time: {buildWatch.Elapsed.TotalMilliseconds:F2} ms");
+Console.WriteLine($"Build time: {buildWatch.Elapsed.TotalMilliseconds:F2} ms");
 
- // Compare the two methods
- Console.WriteLine("\n-- Performance Comparison --");
+// Compare the two methods
+Console.WriteLine("\n-- Performance Comparison --");
 
- Console.WriteLine($"Append length: {aOutput.Length}");
- Console.WriteLine($"Build length: {bOutput.Length}");
+Console.WriteLine($"Append length: {aOutput.Length}");
+Console.WriteLine($"Build length: {bOutput.Length}");
 
- if (appendWatch.Elapsed.TotalMilliseconds > buildWatch.Elapsed.TotalMilliseconds)
- {
-     Console.WriteLine("StringBuilder was faster!");
- }
- else
- {
-     Console.WriteLine("Normal string concatenation was faster!");
- }
+if (appendWatch.Elapsed.TotalMilliseconds > buildWatch.Elapsed.TotalMilliseconds)
+{
+    Console.WriteLine("StringBuilder was faster!");
+}
+else
+{
+    Console.WriteLine("Normal string concatenation was faster!");
+}
 
+
+
+// Task 3: Graphing the Analysis
+
+Console.WriteLine("\n-- Task 3: Graphing the Analysis --");
+
+// Number of passes to test
+int graphIterations = 20;
+
+// Store execution times for both methods
+List<double> appendElapsedList = new List<double>();
+List<double> builderElapsedList = new List<double>();
+
+// Store the input sizes for the X-axis
+List<double> inputSizes = new List<double>();
+
+// Method 1
+Console.WriteLine("\n--- Append Benchmark ---");
+
+for (int pass = 1; pass <= graphIterations; pass++)
+{
+    int loopCount = pass * 10_000;
+    string appendOutput = "";
+
+    Stopwatch watch = Stopwatch.StartNew();
+
+    for (int i = 0; i < loopCount; i++)
+    {
+        appendOutput += "z";
+    }
+
+    watch.Stop();
+
+    appendElapsedList.Add(watch.Elapsed.TotalMilliseconds);
+    inputSizes.Add(loopCount);
+
+    Console.WriteLine(
+        $"Pass {pass}: {loopCount} characters - " +
+        $"{watch.Elapsed.TotalMilliseconds:F2} ms");
+}
+
+// Method 2
+Console.WriteLine("\n--- StringBuilder Benchmark ---");
+
+for (int pass = 1; pass <= graphIterations; pass++)
+{
+    int loopCount = pass * 10_000;
+    StringBuilder builderOutput = new StringBuilder();
+
+    Stopwatch watch = Stopwatch.StartNew();
+
+    for (int i = 0; i < loopCount; i++)
+    {
+        builderOutput.Append("z");
+    }
+
+    watch.Stop();
+
+    builderElapsedList.Add(watch.Elapsed.TotalMilliseconds);
+
+    Console.WriteLine(
+        $"Pass {pass}: {loopCount} characters - " +
+        $"{watch.Elapsed.TotalMilliseconds:F2} ms");
+}
+
+// Create the Append graph
+Console.WriteLine("\n--- Creating Graphs ---");
+
+ScottPlot.Plot appendPlot = new ScottPlot.Plot();
+
+appendPlot.Add.Scatter(
+    inputSizes.ToArray(),
+    appendElapsedList.ToArray());
+
+appendPlot.Title("String Append Performance");
+appendPlot.XLabel("Number of Characters");
+appendPlot.YLabel("Execution Time (ms)");
+
+appendPlot.SavePng("appendPlot.png", 800, 600);
+
+Console.WriteLine("appendPlot.png saved successfully!");
+
+// Create the StringBuilder graph
+ScottPlot.Plot buildPlot = new ScottPlot.Plot();
+
+buildPlot.Add.Scatter(
+    inputSizes.ToArray(),
+    builderElapsedList.ToArray());
+
+buildPlot.Title("StringBuilder Performance");
+buildPlot.XLabel("Number of Characters");
+buildPlot.YLabel("Execution Time (ms)");
+
+buildPlot.SavePng("buildPlot.png", 800, 600);
+
+Console.WriteLine("buildPlot.png saved successfully!");
