@@ -171,6 +171,24 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Added axis labels, changed font sizes, and saved the graph as `Topic7A-Task3.png`.
 
 
+
+### Week 8
+
+#### Prac A - Hashtable and Complexity Analysis
+
+- Used `Hashtable` to store Player objects and their scores as key-value pairs.
+- Learned how `Hashtable` handles different key types and duplicate keys.
+- Used `KeyValuePair<Player, int>` and `Sort()` to sort player scores in descending order.
+- Used the `is` keyword to check data types safely.
+- Used `Stopwatch` to measure the execution time of different methods.
+- Compared normal string concatenation using `+=` with `StringBuilder.Append()`.
+- Learned why StringBuilder is more efficient for repeated string operations.
+- Used nested `for` loops and `List<double>` to collect benchmark results.
+- Used ScottPlot to create graphs showing how execution time changes with input size.
+- Learned about O(n²) and O(n) time complexity using the benchmark results.
+- Saved the graphs as `appendPlot.png` and `buildPlot.png`.
+
+
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.

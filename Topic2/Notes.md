@@ -135,3 +135,53 @@ The duplicate score was not added and only one copy remained in the set. This is
 The main difficulty was using `SortedSet` with `BankAccount` objects. The program initially produced an `ArgumentException` because C# did not know how to compare two `BankAccount` objects. I solved this by creating `BankComparer` with `IComparer<BankAccount>` and defining the comparison using balance and owner name.
 
 Another new part was using ScottPlot. I needed to convert the account balances into a `double[]` before passing the data to the bar chart. Using LINQ `Select()` and `ToArray()` made this easier.
+
+
+## Week 8 - Prac A: Hashtable and Complexity Analysis
+
+### What I Learned
+
+In this practical, I learned how to use `Hashtable` in C# to store players and their scores using key-value pairs. In Task 1, I created a `Hashtable` with five `Player` objects as keys and integers as scores. I learned that `Hashtable` does not provide compile-time type safety because it stores keys and values as objects. I tested this by adding a string key, which was accepted, and a duplicate player key, which caused an `ArgumentException`. I also used `KeyValuePair<Player, int>` and `Sort()` to organise the players by score in descending order.
+
+In Task 2, I learned how to use `Stopwatch` from `System.Diagnostics` to measure code performance. I compared normal string concatenation using `+=` with `StringBuilder.Append()` by adding 100,000 characters. The normal Append method took 709.61 ms, while StringBuilder only took 0.50 ms. This helped me understand why StringBuilder is more efficient when repeatedly modifying strings.
+
+In Task 3, I learned how to analyse algorithm complexity using benchmarking and graphs. I used nested `for` loops to test both methods with increasing input sizes and stored their execution times in `List<double>`. I then used ScottPlot to create two bar charts and saved them as `appendPlot.png` and `buildPlot.png`. The results helped me understand Big-O notation, showing that repeated string concatenation has approximately O(n²) time complexity, while StringBuilder has approximately O(n) time complexity.
+
+### Reflection Questions
+
+**Task 1: Using Hashtable**
+**1. What happened when you tried to add the (Key: String, Value: int) entry? Why?**
+The string key was added successfully because `Hashtable` stores keys and values as objects, so it does not enforce specific data types at compile time.
+
+**2. What happened when you tried to add the duplicate key?**
+The program produced an `ArgumentException` because the same Player object was already stored as a key, and `Hashtable` does not allow duplicate keys.
+
+**3. Were you able to use LINQ methods when writing your sorting algorithm? Why or why not?**
+I did not use LINQ directly because `Hashtable` is not a strongly typed collection. Instead, I converted the entries into a `List<KeyValuePair<Player, int>>` and used `Sort()` to organise the scores in descending order.
+
+**Task 2: Complexity Analysis Through Benchmarking**
+
+**1. Which approach was faster? Append or Build?**
+The StringBuilder method was faster, taking only 0.50 ms compared with 709.61 ms for normal string concatenation.
+
+**2. Why?**
+StringBuilder was faster because it uses a resizable buffer to add characters, while normal string concatenation repeatedly creates new strings and copies existing content.
+
+**Task 3: Graphing the Analysis**
+**1. What is the Big-O notation complexity of the Append method?**
+The repeated string concatenation method has approximately O(n²) time complexity.
+
+**2. How does your evidence support this conclusion?**
+The execution time increased rapidly as the input size grew, from 6.88 ms for 10,000 characters to 3,324.56 ms for 200,000 characters. This showed a curved growth pattern, supporting O(n²) complexity.
+
+**3. What is the Big-O notation complexity of the Builder method?**
+The StringBuilder method has approximately O(n) time complexity.
+
+**4. How does your evidence support this conclusion?**
+The execution time increased slowly from 0.14 ms for 10,000 characters to 1.56 ms for 200,000 characters. This showed a roughly linear growth pattern, supporting O(n) complexity.
+
+### Difficulties and Solutions
+One difficulty was understanding how `Hashtable` handles different key types and duplicate keys. When I added a string key, it was accepted even though I intended to store only Player objects. I also received a warning when converting a Hashtable value directly into an integer. I fixed this by using the `is` keyword to check the key and value types before using them.
+
+Another difficulty was understanding the performance difference between normal string concatenation and StringBuilder. I used `Stopwatch` to measure both methods with the same number of characters and found that StringBuilder was much faster. In Task 3, I used increasing input sizes and ScottPlot graphs to understand how their execution times changed. This helped me connect the benchmark results with Big-O notation.
+
