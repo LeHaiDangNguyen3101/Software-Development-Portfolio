@@ -143,6 +143,88 @@ Console.WriteLine($"HeapSizeBytes: {heapSizeBytes:N0} bytes");
 Console.WriteLine($"PeakWorkingSet64: {peakWorkingSet64:N0} bytes");
 
 
+
+// Task 5: Benchmarking List vs LinkedList
+
+Console.WriteLine("\n-- Task 5: List vs LinkedList Memory --");
+
+// Change this to "LinkedList" for the second test
+string benchmarkType = "LinkedList";
+
+if (benchmarkType == "List")
+{
+    // Create a List of 10,000 players
+    List<Player> listPlayers = new List<Player>();
+
+    for (int i = 0; i < 10_000; i++)
+    {
+        listPlayers.Add(new Player($"Player{i}"));
+    }
+
+    Console.WriteLine($"List count: {listPlayers.Count}");
+
+    // Save List to JSON
+    string listPath = Path.Combine("Attachments", "ListPlayers.json");
+    JsonFileHelper.FileWriter(listPath, listPlayers);
+
+    // Load List from JSON
+    List<Player> loadedList =
+        JsonFileHelper.FileReader<List<Player>>(listPath);
+
+    Console.WriteLine($"Loaded List count: {loadedList.Count}");
+
+    // Measure memory
+    GC.Collect();
+
+    long listHeap = GC.GetGCMemoryInfo().HeapSizeBytes;
+    long listPeak = Process.GetCurrentProcess().PeakWorkingSet64;
+
+    Console.WriteLine("\n-- List Memory Results --");
+    Console.WriteLine($"HeapSizeBytes: {listHeap:N0} bytes");
+    Console.WriteLine($"PeakWorkingSet64: {listPeak:N0} bytes");
+
+    GC.KeepAlive(loadedList);
+    GC.KeepAlive(listPlayers);
+}
+else if (benchmarkType == "LinkedList")
+{
+    // Create a LinkedList of 10,000 players
+    LinkedList<Player> linkedBenchPlayers = new LinkedList<Player>();
+
+    for (int i = 0; i < 10_000; i++)
+    {
+        linkedBenchPlayers.AddLast(new Player($"Player{i}"));
+    }
+
+    Console.WriteLine($"LinkedList count: {linkedBenchPlayers.Count}");
+
+    // Save LinkedList to JSON
+    string linkedBenchPath =
+        Path.Combine("Attachments", "LinkedListPlayers.json");
+
+    JsonFileHelper.FileWriter(linkedBenchPath, linkedBenchPlayers);
+
+    // Load LinkedList from JSON
+    LinkedList<Player> loadedLinkedList =
+        JsonFileHelper.FileReader<LinkedList<Player>>(linkedBenchPath);
+
+    Console.WriteLine($"Loaded LinkedList count: {loadedLinkedList.Count}");
+
+    // Measure memory
+    GC.Collect();
+
+    long linkedHeap = GC.GetGCMemoryInfo().HeapSizeBytes;
+    long linkedPeak = Process.GetCurrentProcess().PeakWorkingSet64;
+
+    Console.WriteLine("\n-- LinkedList Memory Results --");
+    Console.WriteLine($"HeapSizeBytes: {linkedHeap:N0} bytes");
+    Console.WriteLine($"PeakWorkingSet64: {linkedPeak:N0} bytes");
+
+    GC.KeepAlive(loadedLinkedList);
+    GC.KeepAlive(linkedBenchPlayers);
+}
+
+
 // Task 3: Refactor File I/O Methods
 
 public static class JsonFileHelper
