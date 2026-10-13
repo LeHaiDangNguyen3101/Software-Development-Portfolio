@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using System.IO;
+using System.Diagnostics;
 
 
 // Task 1: Basic File I/O
@@ -92,6 +93,54 @@ foreach (Player player in loadedPlayers)
     Console.WriteLine(player);
 }
 
+
+// Task 4: Displaying Memory Usage for LinkedList
+
+Console.WriteLine("\n-- Task 4: LinkedList Memory Usage --");
+
+// Create a LinkedList of Players
+LinkedList<Player> linkedPlayers = new LinkedList<Player>();
+
+// Add the five players to the LinkedList
+foreach (Player player in players)
+{
+    linkedPlayers.AddLast(player);
+}
+
+Console.WriteLine($"Players in LinkedList: {linkedPlayers.Count}");
+
+// Save LinkedList to JSON using generic FileWriter
+string linkedPath = Path.Combine("Attachments", "LinkedPlayers.json");
+
+JsonFileHelper.FileWriter(linkedPath, linkedPlayers);
+
+Console.WriteLine("LinkedList saved successfully!");
+
+// Load LinkedList from JSON using generic FileReader
+LinkedList<Player> loadedLinkedPlayers =
+    JsonFileHelper.FileReader<LinkedList<Player>>(linkedPath);
+
+Console.WriteLine("\n-- Loaded LinkedList Players --");
+
+foreach (Player player in loadedLinkedPlayers)
+{
+    Console.WriteLine(player.Name);
+}
+
+// Request garbage collection before measuring
+GC.Collect();
+
+// Get managed heap memory information
+long heapSizeBytes = GC.GetGCMemoryInfo().HeapSizeBytes;
+
+// Get peak process working-set memory
+long peakWorkingSet64 =
+    Process.GetCurrentProcess().PeakWorkingSet64;
+
+Console.WriteLine("\n-- Memory Usage --");
+
+Console.WriteLine($"HeapSizeBytes: {heapSizeBytes:N0} bytes");
+Console.WriteLine($"PeakWorkingSet64: {peakWorkingSet64:N0} bytes");
 
 
 // Task 3: Refactor File I/O Methods
