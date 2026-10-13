@@ -1,0 +1,32 @@
+[
+  {
+    "Name": "Lucas",
+    "Health": 100,
+    "Attack": 20,
+    "Defence": 10
+  },
+  {
+    "Name": "Emma",
+    "Health": 90,
+    "Attack": 25,
+    "Defence": 8
+  },
+  {
+    "Name": "Jack",
+    "Health": 110,
+    "Attack": 15,
+    "Defence": 12
+  },
+  {
+    "Name": "Alice",
+    "Health": 95,
+    "Attack": 22,
+    "Defence": 9
+  },
+  {
+    "Name": "Henry",
+    "Health": 120,
+    "Attack": 18,
+    "Defence": 15
+  }
+]
