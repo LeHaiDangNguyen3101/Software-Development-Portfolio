@@ -73,19 +73,16 @@ string jsonString = JsonSerializer.Serialize(players, options);
 Console.WriteLine("\n-- Serialized Players --");
 Console.WriteLine(jsonString);
 
-// Save JSON to a file
+// Save JSON using our generic FileWriter method
 string playerPath = Path.Combine("Attachments", "Players.json");
 
-File.WriteAllText(playerPath, jsonString);
+JsonFileHelper.FileWriter(playerPath, players);
 
 Console.WriteLine("\nPlayers saved to JSON successfully!");
 
-// Read JSON from the file
-string savedJson = File.ReadAllText(playerPath);
-
-// Convert JSON back into a Player list
+// Load JSON using our generic FileReader method
 List<Player> loadedPlayers =
-    JsonSerializer.Deserialize<List<Player>>(savedJson)!;
+    JsonFileHelper.FileReader<List<Player>>(playerPath);
 
 // Print the loaded players
 Console.WriteLine("\n-- Deserialized Players --");
@@ -95,3 +92,32 @@ foreach (Player player in loadedPlayers)
     Console.WriteLine(player);
 }
 
+
+
+// Task 3: Refactor File I/O Methods
+
+public static class JsonFileHelper
+{
+    // Generic method to save an object as JSON
+    public static void FileWriter<T>(string path, T objectToWrite)
+        where T : class
+    {
+        string json = JsonSerializer.Serialize(
+            objectToWrite,
+            new JsonSerializerOptions { WriteIndented = true });
+
+        File.WriteAllText(path, json);
+    }
+
+    // Generic method to read JSON into an object
+    public static T FileReader<T>(string path)
+        where T : class
+    {
+        string json = File.ReadAllText(path);
+
+        T? result = JsonSerializer.Deserialize<T>(json);
+
+        return result ?? throw new InvalidDataException(
+            "Could not deserialize the JSON file.");
+    }
+}
