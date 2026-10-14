@@ -198,6 +198,20 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Learned about O(n²) and O(n) time complexity using the benchmark results.
 - Saved the graphs as `appendPlot.png` and `buildPlot.png`.
 
+#### Prac B - File I/O, JSON Serialization and Memory Benchmarking
+
+- Used `System.IO` to create, write and read text files in C#.
+- Used `StreamWriter`, `StreamReader` and `File.ReadAllText()` to work with `MyTest.txt`.
+- Tested relative file paths, missing folders and file overwriting.
+- Used `System.Text.Json` to serialize and deserialize a `List<Player>`.
+- Saved and loaded five Player objects using `Players.json`.
+- Created reusable generic `FileWriter<T>()` and `FileReader<T>()` methods.
+- Used `where T : class` to restrict generic methods to reference types.
+- Created a `LinkedList<Player>` and added players using `AddLast()`.
+- Used `GC.Collect()` and `GC.GetGCMemoryInfo().HeapSizeBytes` to examine managed heap memory.
+- Used `Process.GetCurrentProcess().PeakWorkingSet64` to measure peak process working-set memory.
+- Compared memory measurements for `List<Player>` and `LinkedList<Player>` containing 10,000 players.
+- Learned how data structure design can affect memory usage and why memory measurements need careful interpretation.
 
 ## Running the Projects
 

@@ -233,3 +233,89 @@ The execution time increased slowly from 0.14 ms for 10,000 characters to 1.56 m
 One difficulty was understanding how `Hashtable` handles different key types and duplicate keys. When I added a string key, it was accepted even though I intended to store only Player objects. I also received a warning when converting a Hashtable value directly into an integer. I fixed this by using the `is` keyword to check the key and value types before using them.
 
 Another difficulty was understanding the performance difference between normal string concatenation and StringBuilder. I used `Stopwatch` to measure both methods with the same number of characters and found that StringBuilder was much faster. In Task 3, I used increasing input sizes and ScottPlot graphs to understand how their execution times changed. This helped me connect the benchmark results with Big-O notation.
+
+## Week 8 - Prac B: File I/O, JSON Serialization and Memory Benchmarking
+
+### What I Learned
+
+In this practical, I learned how to read and write files in C# using `System.IO`. In Task 1, I used `StreamWriter` to create and write text into `MyTest.txt`, then used `StreamReader` and `File.ReadAllText()` to read the content. I also tested different file paths and learned that using a path with a folder that does not exist causes a `DirectoryNotFoundException`. I found that `File.CreateText()` overwrites the existing content when the file already exists.
+
+In Task 2, I learned how to use `System.Text.Json` to serialize and deserialize a `List<Player>`. I created five Player objects, converted them into JSON using `JsonSerializer.Serialize()`, and saved the data to `Players.json`. I then used `JsonSerializer.Deserialize()` to convert the saved JSON back into a list of players. I also learned that the Player properties need to be public for them to be included in JSON serialization by default.
+
+In Task 3, I learned how to refactor repeated file operations into reusable generic methods. I created `FileWriter<T>()` and `FileReader<T>()` using the `where T : class` constraint. These methods allowed me to save and load different collection types without repeating the same JSON code. I used them with `List<Player>` and later reused them with `LinkedList<Player>`.
+
+In Task 4, I learned how to use `LinkedList<Player>` to store players in connected nodes. I added five players using `AddLast()`, saved and loaded the collection using my generic methods, and measured memory usage using `GC.GetGCMemoryInfo().HeapSizeBytes` and `Process.GetCurrentProcess().PeakWorkingSet64`. I also learned how the Garbage Collector manages memory used by .NET objects.
+
+In Task 5, I compared the memory usage of `List<Player>` and `LinkedList<Player>` by creating 10,000 players in each collection. I saved and loaded both collections and measured their memory usage. The List run reported 10,572,752 bytes of managed heap size, while the LinkedList run reported 11,280,600 bytes. This helped me understand that LinkedList has additional memory overhead because each node stores references to other nodes. I also learned that these memory measurements include more than just the collections themselves.
+
+### Reflection Questions
+
+**Task 1: Basic File I/O**
+
+**1. What happens if the text file already exists when you write to it?**
+
+If the file already exists, `File.CreateText()` overwrites its previous content with the new text. I tested this by adding an extra line to `MyTest.txt` and running the program again. The extra line disappeared.
+
+**2. What does the @ symbol before the quoted string mean?**
+
+The `@` symbol creates a verbatim string literal in C#. It allows backslashes to be written without escaping them, which is useful for Windows file paths such as `@"C:\temp\MyTest.txt"`.
+
+**3. Do you need to wrap the file access with using StreamReader and using StreamWriter? What would happen if you don't do this?**
+
+Using `using` is recommended because it automatically closes and disposes of the reader or writer when finished. Without it, I would need to close or dispose of the file resources manually. Otherwise, the file could remain open longer than necessary and cause resource or file access problems.
+
+**4. How is using StreamReader different from just File.ReadAllText()?**
+
+`StreamReader` allows me to read a file gradually, such as one line at a time, while `File.ReadAllText()` reads the entire file into one string. StreamReader is useful for processing large files, while ReadAllText is simpler for small text files.
+
+**Task 2: Serialise and Deserialise a List**
+
+**1. What does the ! symbol at the end of the Deserialize line do?**
+
+The `!` is the null-forgiving operator. It tells the compiler to ignore a possible null warning because I expect deserialization to return a valid object. However, it does not prevent null values or errors at runtime.
+
+**2. What happens if all your class properties aren't public?**
+
+By default, `System.Text.Json` serializes public properties. If properties are not public, they may be missing from the JSON output. In this task, I made the Health, Attack and Defence properties public so all player information could be saved correctly.
+
+**Task 3: Refactor I/O Methods**
+
+**1. What does where T : class mean?**
+
+`where T : class` is a generic type constraint. It means the type `T` must be a reference type. This allows the same generic methods to work with different reference types, such as `List<Player>` and `LinkedList<Player>`.
+
+**Task 4: Displaying Memory Usage for LinkedList**
+
+**1. What is the purpose of the Garbage Collector?**
+
+The Garbage Collector automatically manages memory used by .NET objects. It identifies objects that are no longer reachable and reclaims their managed memory.
+
+**2. Why does it know the current amount of bytes allocated to the Heap?**
+
+The .NET runtime manages the managed heap and tracks information about its memory usage. `GC.GetGCMemoryInfo().HeapSizeBytes` provides the heap size reported by the Garbage Collector after the most recent collection. It does not measure only the LinkedList.
+
+**3. What does GC.Collect() do?**
+
+`GC.Collect()` requests a garbage collection to reclaim memory from objects that are no longer reachable. I used it before checking memory information to make the results more consistent.
+
+**4. Was the PeakWorkingSet64 different from the HeapSizeBytes? Why?**
+
+Yes. In Task 4, HeapSizeBytes was 419,032 bytes, while PeakWorkingSet64 was 31,326,208 bytes. They were different because HeapSizeBytes reports managed heap information, while PeakWorkingSet64 measures the highest physical working-set memory used by the entire process, including other application memory.
+
+**Task 5: Benchmarking Memory for List and LinkedList**
+
+**1. Which class used more memory?**
+
+In my experiment, the LinkedList run reported higher memory usage. Its HeapSizeBytes was 11,280,600 bytes compared with 10,572,752 bytes for List. The LinkedList run also had a higher PeakWorkingSet64.
+
+**2. Why?**
+
+A `List<T>` stores references in a backing array, while a `LinkedList<T>` creates separate nodes with additional references to neighbouring nodes. This means LinkedList usually has more memory overhead per element. However, my measurements included other application memory, so they did not measure the exact memory used by each collection alone.
+
+### Difficulties and Solutions
+
+One difficulty was understanding how file paths work. When I changed the path to a folder that did not exist, the program produced a `DirectoryNotFoundException`. I solved this by restoring the correct relative path and using `Directory.CreateDirectory()` to ensure the Attachments folder existed.
+
+Another difficulty occurred in Task 3 when I accidentally declared `loadedPlayers` twice in the same scope. This caused a `CS0128` compilation error. I fixed it by removing the duplicate code and keeping the reusable file operations inside the `JsonFileHelper` class.
+
+In Tasks 4 and 5, the main challenge was understanding memory measurements. I used `GC.Collect()`, `HeapSizeBytes` and `PeakWorkingSet64` to examine memory usage. By comparing List and LinkedList with the same number of players, I developed a better understanding of how different data structures can affect memory usage and why benchmark results need to be interpreted carefully.
