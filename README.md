@@ -213,6 +213,17 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Compared memory measurements for `List<Player>` and `LinkedList<Player>` containing 10,000 players.
 - Learned how data structure design can affect memory usage and why memory measurements need careful interpretation.
 
+### Week 9
+
+#### Prac A – Graphs, BFS and DFS
+
+- Created a graph data structure using `Node` and `Graph` classes in C#.
+- Used `HashSet<Node>` to store nodes and connections without duplicates.
+- Implemented an undirected graph using the `AddEdge()` method.
+- Implemented Breadth First Search (BFS) using a `Queue` to explore nodes level by level.
+- Implemented Depth First Search (DFS) using a `Stack` to explore nodes branch by branch.
+- Used visited-node collections to avoid repeated processing.
+- Compared BFS and DFS traversal behaviour and their `O(V + E)` time complexity.
 ## Running the Projects
 
 The .NET SDK is required to run the C# projects.

@@ -28,9 +28,9 @@ graph.AddEdge(C, F);
 graph.AddEdge(D, G);
 graph.AddEdge(E, H);
 graph.AddEdge(F, I);
+// Task 3 adjusted graph
 graph.AddEdge(G, H);
 graph.AddEdge(D, E);
-graph.AddEdge(G, H);
 
 // Print the graph
 Console.WriteLine(graph.ToString());
