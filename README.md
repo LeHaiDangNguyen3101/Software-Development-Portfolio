@@ -224,7 +224,18 @@ Topic 2 focuses on working with collections and data structures in C#.
 - Implemented Depth First Search (DFS) using a `Stack` to explore nodes branch by branch.
 - Used visited-node collections to avoid repeated processing.
 - Compared BFS and DFS traversal behaviour and their `O(V + E)` time complexity.
-## Running the Projects
+
+
+#### Prac B – Dijkstra's Algorithm and AI Code Generation
+
+- Modified the graph structure to support weighted edges using `Dictionary<Node, int>`.
+- Created a weighted graph with 16 nodes and 23 edges.
+- Implemented Dijkstra's algorithm using `PriorityQueue<Node, int>`.
+- Used dictionaries to track shortest distances and reconstruct the shortest path.
+- Found the lowest-cost route from Start to End with a total weight of 10.
+- Generated and tested an alternative implementation using ChatGPT.
+- Compared object-oriented graph classes with a dictionary-based adjacency list.
+- Reflected on C# learning, challenges and development practices throughout the semester.## Running the Projects
 
 The .NET SDK is required to run the C# projects.
 
