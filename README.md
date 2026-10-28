@@ -296,9 +296,7 @@ dotnet test Topic1/Week2/PracB/BankAccountApp.Tests
 Each topic contains a `Notes.md` file describing:
 
 - What I learned.
-- Difficulties I encountered.
-- How I solved problems.
-- Important concepts and development practices.
+- Reflection questions for each workshop classes (if have)
 
 
 
